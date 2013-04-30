@@ -1,0 +1,7 @@
+parameters:
+    local: fr
+
+services:
+    sdz_blog.antispam:
+       class: Sdz\BlogBundle\Services\Antispam\MailerAntispam
+       arguments: [\Swift_Mailer, %local%, 3]

@@ -1,0 +1,12 @@
+{# src/Sdz/BlogBundle/Resources/view/layout.html.twig #}
+{% extends "::layout.html.twig" %}
+
+{% block title %}Blog - {{ parent() }}{% endblock %}
+  
+{% block body %}
+    <h1>Bienvenu sur le blog</h1>
+    <hr>
+    {% block sdzblog_content %}
+        {{ render(controller("SdzBlogBundle:Article:menu")) }}
+    {% endblock %}
+{% endblock %}

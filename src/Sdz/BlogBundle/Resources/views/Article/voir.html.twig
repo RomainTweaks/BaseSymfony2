@@ -1,0 +1,73 @@
+{# src/Sdz/BlogBundle/Resources/view/Blog/voir.html.twig #}
+
+{% extends "SdzBlogBundle::layout.html.twig" %}
+
+  {% block title %}Voir un Article - {{ parent() }}{% endblock %}
+  
+  {% block sdzblog_content %}
+    <h2>
+    {% if article.image is not null %}
+            <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" />
+    {% endif %}
+    {{ article.titre }} 
+    </h2>
+    <i>Par {{ article.auteur }}, le {{ article.date|date('d/m/y') }}</i>
+    <br />
+    <i>
+        {% if article.categories.count > 0 %}
+            {% for categorie in article.categories %}
+                <button class="btn-mini btn-info">{{ categorie.nom }}</button>
+                {% if not loop.last %} - {% endif %}
+            {% endfor %}
+        {% endif %}
+    </i>
+    
+    <div class="well">
+        {{ article.contenu }}
+    </div>
+    <div id="competences">
+      {% if liste_articleCompetences|length > 0 %}
+        <div>
+          Compétences utilisées dans cet article :
+          <ul class="breadcrumb">
+            {% for articleCompetence in liste_articleCompetences %}
+              <li>{{ articleCompetence.competence.nom }} : {{ articleCompetence.niveau }}<span class="divider">/</span></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+    <p>
+        <a href="{{ path('Sdzblog_accueil') }}" class="btn">
+            <i class="icon-chevron-left"></i>
+            Retour à la liste
+        </a>
+        <a href="{{ path('Sdzblog_modifier', {'slug': article.slug}) }}" class="btn">
+            <i class="icon-edit"></i>
+            Modifier l'article
+        </a>
+        <a href="{{ path('Sdzblog_supprimer', {'id': article.id}) }}" class="btn">
+            <i class="icon-trash"></i>
+            Supprimer l'article
+        </a>
+    </p>
+    
+    <hr />
+
+    <div id="zone_com">
+        {% for com in article.commentaires %}
+            <div class="commentaire">
+                <div class="">
+                    {{ com.auteur }}
+                </div>
+                <div class="">
+                    <i>{{ com.date|date('d/m/y') }}</i>
+                    <div class="well">
+                        {{ com.contenu }}
+                    </div>
+                </div>
+            </div>
+            <hr />
+        {% endfor %}
+    </div>
+  {% endblock %}

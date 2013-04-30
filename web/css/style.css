@@ -1,0 +1,12 @@
+/* 
+    Document   : style
+    Created on : 25 avr. 2013, 09:55:56
+    Author     : Gandiol.r
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.container{
+    width: 960px;
+    margin: auto;
+}

@@ -1,0 +1,17 @@
+{# src/Sdz/BlogBundle/Resources/view/Blog/index.html.twig #}
+{% extends "SdzBlogBundle::layout.html.twig" %}
+
+    {% block title %}Accueil - {{ parent() }}{% endblock %}
+    {% block sdzblog_content %}
+        <h2>Derniers articles</h2>
+        
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <a href="{{ path('Sdzblog_voir', {'id': article.id}) }}">{{ article.titre }}</a>
+                </li>
+            {% else %}
+                <li>Pas d'articles (encore)!!</li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
